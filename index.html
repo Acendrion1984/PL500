@@ -462,132 +462,6 @@
     font-family: 'Source Sans 3', sans-serif;
   }
 
-  /* ── MOBILE (≤768px) ─────────────────────────── */
-  @media (max-width: 768px) {
-
-    :root { --header-h: 56px; --sidebar-w: 280px; }
-
-    /* Header kompakt */
-    header { padding: 0; }
-    .header-logo-strip { width: 48px; padding: 0; justify-content: center; }
-    .schaeffler-wordmark span, .schaeffler-wordmark { font-size: 0; gap: 0; }
-    .schaeffler-wordmark svg { width: 26px; height: 26px; margin: 0 11px; }
-    .header-doc-info { display: none; }
-    .header-actions .btn-ghost,
-    .header-actions .btn-outline { display: none; }
-    .header-actions .btn-green { padding: 0 12px; font-size: 12px; gap: 4px; }
-    .header-actions .btn-green::before { content: '🖨'; }
-    .header-content { padding: 0 10px 0 0; justify-content: flex-end; gap: 8px; }
-
-    /* Hamburger-Button */
-    #mob-menu-btn {
-      display: flex !important;
-      align-items: center; justify-content: center;
-      width: 40px; height: 40px;
-      background: transparent; border: none; cursor: pointer;
-      flex-direction: column; gap: 5px; padding: 8px;
-      order: -1; margin-left: 4px;
-    }
-    #mob-menu-btn span {
-      display: block; width: 22px; height: 2px;
-      background: var(--schaeffler-green); border-radius: 2px;
-      transition: all 0.2s;
-    }
-    #mob-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    #mob-menu-btn.open span:nth-child(2) { opacity: 0; }
-    #mob-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Overlay-Hintergrund */
-    #mob-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 150;
-      background: rgba(0,0,0,0.45);
-    }
-    #mob-overlay.show { display: block; }
-
-    /* Sidebar als Drawer */
-    nav.sidebar {
-      position: fixed;
-      top: var(--header-h); left: 0;
-      height: calc(100vh - var(--header-h));
-      width: var(--sidebar-w);
-      z-index: 160;
-      transform: translateX(-100%);
-      transition: transform 0.25s ease;
-      box-shadow: 4px 0 20px rgba(0,0,0,0.15);
-    }
-    nav.sidebar.open { transform: translateX(0); }
-
-    /* Nav-Links größer für Touch */
-    .nav-link { padding: 13px 20px; font-size: 14px; }
-
-    /* Layout: volle Breite */
-    .layout { padding-top: var(--header-h); }
-    main { max-width: 100%; padding: 16px 12px; }
-
-    /* Summary-Bar: 2-spaltig scrollen */
-    .summary-bar {
-      padding: 10px 14px;
-      gap: 0;
-      overflow-x: auto;
-      flex-wrap: nowrap;
-    }
-    .summary-item { padding: 0 14px; flex-shrink: 0; }
-    .summary-item .s-label { font-size: 9px; }
-    .summary-item .s-value { font-size: 13px; }
-
-    /* Cards */
-    .card-body { padding: 14px; }
-    .card-header { padding: 12px 14px; }
-    .card-title-de { font-size: 13px; }
-    .tolerance-tag { display: none; }
-
-    /* Alle Grids → 1 Spalte */
-    .field-grid.c2,
-    .field-grid.c3,
-    .field-grid.c4 { grid-template-columns: 1fr; gap: 10px; }
-
-    /* Inputs/Selects größer */
-    .field input, .field select, .field textarea {
-      font-size: 15px; padding: 10px 12px;
-      min-height: 44px;
-    }
-
-    /* Check-Rows: Label oben, Buttons unten */
-    .check-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .radio-group { gap: 6px; }
-    .rbtn { padding: 8px 16px; font-size: 13px; min-height: 40px; }
-
-    /* Tabellen: horizontal scrollen */
-    .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .ptbl { min-width: 520px; }
-    .ptbl th, .ptbl td { padding: 7px 8px; font-size: 12px; white-space: nowrap; }
-    .ptbl td input { min-width: 60px; font-size: 13px; }
-
-    /* Plausitest-Tabelle: kompakter */
-    #plaus-table { min-width: 340px; }
-    #plaus-table th, #plaus-table td { padding: 8px 6px; }
-    #plaus-table select { font-size: 16px; }
-
-    /* Env-Cards: nebeneinander bleiben aber kleiner */
-    .env-card { min-width: 120px; padding: 12px 10px; }
-
-    /* Foto-Zone */
-    .photo-zone { padding: 24px 16px; }
-
-    /* Toast unten mittig */
-    #toast { bottom: 16px; right: 16px; left: 16px; text-align: center; }
-
-    /* Page-Footer-Strip: kompakter */
-    .page-footer-strip { gap: 12px; padding: 10px 14px; font-size: 11px; }
-
-    /* Infobox */
-    .infobox { font-size: 12px; }
-  }
-
-  /* Hamburger immer versteckt auf Desktop */
-  #mob-menu-btn { display: none; }
-
   /* ── PRINT: DIN A4 OPTIMIERT ─────────────────── */
   @media print {
     @page {
@@ -708,7 +582,7 @@
     #s4  { page-break-before: always; break-before: page; }
     #s5  { page-break-before: always; break-before: page; }
     #s6  { page-break-before: always; break-before: page; }
-    /* s-sign folgt direkt nach Plausitest auf Seite 8 — kein eigener Seitenumbruch */
+    #s-sign { page-break-before: always; break-before: page; }
 
     /* Card-Body immer sichtbar */
     .card-body { display: block !important; padding: 4mm 5mm !important; }
@@ -816,13 +690,13 @@
     .ev-en { font-size: 7pt !important; }
 
     /* Plausibility */
-    /* plaus-grid unused */
-
-
-
-    #plaus-table th { font-size: 6.5pt !important; padding: 1.5mm 2mm !important; }
-    #plaus-table td { font-size: 7.5pt !important; padding: 1mm 2mm !important; }
-    #plaus-table select { font-size: 8pt !important; }
+    .plaus-grid { grid-template-columns: repeat(6,1fr) !important; gap: 2mm !important; }
+    .plaus-cell { padding: 2mm 1mm !important; border-radius: 0 !important; }
+    .plaus-cell .pnum { font-size: 6.5pt !important; }
+    .plaus-cell select { font-size: 10pt !important; }
+    .plaus-cell.iO  { background: #E6F4EC !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .plaus-cell.niO { background: #FDF2F2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .plaus-cell .pinput { font-size: 7.5pt !important; }
 
     /* Photo zone */
     .photo-zone { min-height: 40mm !important; padding: 4mm !important; }
@@ -854,9 +728,6 @@
   <div class="print-doc-nr" id="print-nr-display">Nr.: &mdash;</div>
 </div>
 
-<!-- OVERLAY für mobile Sidebar -->
-<div id="mob-overlay" onclick="closeSidebar()"></div>
-
 <!-- HEADER -->
 <header>
   <div class="header-logo-strip">
@@ -874,17 +745,15 @@
     </div>
   </div>
   <div class="header-content">
-    <button id="mob-menu-btn" onclick="toggleSidebar()" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
     <div class="header-doc-info">
       <div class="header-doc-title">Prüfprotokoll – Rohmann Elotest PL600</div>
       <div class="header-doc-sub">Plant Test Protocol · Version C 2021-06 · Nach P172020 Anlage 2</div>
     </div>
     <div class="header-actions">
       <button class="btn btn-ghost" onclick="resetForm()">↺ Zurücksetzen</button>
-      <button class="btn btn-outline" onclick="exportJSON()">⬇ JSON Export</button>
-      <button class="btn btn-green" onclick="window.print()">🖨 Als PDF speichern</button>
+      <button class="btn btn-outline" onclick="window.print()">🖨 Drucken</button>
+      <button class="btn btn-outline" onclick="exportJSON()">⬇ Export</button>
+      <button class="btn btn-green" onclick="saveForm()">💾 Speichern</button>
     </div>
   </div>
 </header>
@@ -895,19 +764,19 @@
   <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="sidebar-section-label">Allgemein</div>
-    <a class="nav-link active" onclick="navTo('s-cover')">📋 Deckblatt <span class="nav-badge">S1</span></a>
-    <a class="nav-link" onclick="navTo('s-photo')">🖼 Skizze / Foto <span class="nav-badge">S2</span></a>
-    <a class="nav-link" onclick="navTo('s-equip')">🔧 Messeinrichtung <span class="nav-badge">S2</span></a>
-    <a class="nav-link" onclick="navTo('s-env')">🌡 Umgebung <span class="nav-badge">S2</span></a>
+    <a class="nav-link active" onclick="scrollTo('s-cover')">📋 Deckblatt <span class="nav-badge">S1</span></a>
+    <a class="nav-link" onclick="scrollTo('s-photo')">🖼 Skizze / Foto <span class="nav-badge">S2</span></a>
+    <a class="nav-link" onclick="scrollTo('s-equip')">🔧 Messeinrichtung <span class="nav-badge">S2</span></a>
+    <a class="nav-link" onclick="scrollTo('s-env')">🌡 Umgebung <span class="nav-badge">S2</span></a>
     <div class="sidebar-section-label">Prüfungen</div>
-    <a class="nav-link" onclick="navTo('s1')"><span style="color:var(--schaeffler-green);font-weight:700">1</span>&nbsp; Sichtprüfung <span class="nav-badge" id="nav-s1">—</span></a>
-    <a class="nav-link" onclick="navTo('s2')"><span style="color:var(--schaeffler-green);font-weight:700">2</span>&nbsp; Funktionsprüfung <span class="nav-badge" id="nav-s2">—</span></a>
-    <a class="nav-link" onclick="navTo('s3')"><span style="color:var(--schaeffler-green);font-weight:700">3</span>&nbsp; Senderfrequenz <span class="nav-badge" id="nav-s3">—</span></a>
-    <a class="nav-link" onclick="navTo('s4')"><span style="color:var(--schaeffler-green);font-weight:700">4</span>&nbsp; Verstärkerstufen <span class="nav-badge" id="nav-s4">—</span></a>
-    <a class="nav-link" onclick="navTo('s5')"><span style="color:var(--schaeffler-green);font-weight:700">5</span>&nbsp; Frequenzfilter <span class="nav-badge" id="nav-s5">—</span></a>
-    <a class="nav-link" onclick="navTo('s6')"><span style="color:var(--schaeffler-green);font-weight:700">6</span>&nbsp; Plausitest <span class="nav-badge" id="nav-s6">—</span></a>
+    <a class="nav-link" onclick="scrollTo('s1')"><span style="color:var(--schaeffler-green);font-weight:700">1</span>&nbsp; Sichtprüfung <span class="nav-badge" id="nav-s1">—</span></a>
+    <a class="nav-link" onclick="scrollTo('s2')"><span style="color:var(--schaeffler-green);font-weight:700">2</span>&nbsp; Funktionsprüfung <span class="nav-badge" id="nav-s2">—</span></a>
+    <a class="nav-link" onclick="scrollTo('s3')"><span style="color:var(--schaeffler-green);font-weight:700">3</span>&nbsp; Senderfrequenz <span class="nav-badge" id="nav-s3">—</span></a>
+    <a class="nav-link" onclick="scrollTo('s4')"><span style="color:var(--schaeffler-green);font-weight:700">4</span>&nbsp; Verstärkerstufen <span class="nav-badge" id="nav-s4">—</span></a>
+    <a class="nav-link" onclick="scrollTo('s5')"><span style="color:var(--schaeffler-green);font-weight:700">5</span>&nbsp; Frequenzfilter <span class="nav-badge" id="nav-s5">—</span></a>
+    <a class="nav-link" onclick="scrollTo('s6')"><span style="color:var(--schaeffler-green);font-weight:700">6</span>&nbsp; Plausitest <span class="nav-badge" id="nav-s6">—</span></a>
     <div class="sidebar-section-label">Abschluss</div>
-    <a class="nav-link" onclick="navTo('s-sign')">✍ Unterschriften</a>
+    <a class="nav-link" onclick="scrollTo('s-sign')">✍ Unterschriften</a>
     <div style="padding: 20px 20px 8px; border-top: 1px solid var(--gray-10); margin-top: 12px;">
       <div style="font-size:11px;color:var(--gray-40);line-height:1.6">
         Rohmann Elotest PL600<br>
@@ -962,7 +831,7 @@
         <div class="section-num neutral">📋</div>
         <div class="card-title-wrap">
           <div class="card-title-de">Deckblatt</div>
-          <div class="card-title-en">Cover Sheet — Page 1 of 8</div>
+          <div class="card-title-en">Cover Sheet — Page 1 of 7</div>
         </div>
         <div class="card-chevron open">▼</div>
       </div>
@@ -995,7 +864,7 @@
           <div class="field"><label class="field-label">Ausstellungsdatum <span>Date of issue</span></label><input type="date" id="f-issue"></div>
         </div>
         <div class="page-footer-strip">
-          <span><strong>Page 1 of 8</strong></span>
+          <span><strong>Page 1 of 7</strong></span>
           <span>Schaeffler Group</span>
           <span>Rev: 0</span>
           <span>Nach P172020 Anlage 2</span>
@@ -1007,7 +876,7 @@
     <div class="card" id="s-photo">
       <div class="card-header open" onclick="toggle(this)">
         <div class="section-num neutral">🖼</div>
-        <div class="card-title-wrap"><div class="card-title-de">Skizze / Foto</div><div class="card-title-en">Diagram / Photo — Page 2 of 8</div></div>
+        <div class="card-title-wrap"><div class="card-title-de">Skizze / Foto</div><div class="card-title-en">Diagram / Photo — Page 2 of 7</div></div>
         <div class="card-chevron open">▼</div>
       </div>
       <div class="card-body">
@@ -1083,7 +952,7 @@
     <div class="card" id="s1">
       <div class="card-header open" onclick="toggle(this)">
         <div class="section-num">1</div>
-        <div class="card-title-wrap"><div class="card-title-de">Sichtprüfung</div><div class="card-title-en">Visual Test — Page 3 of 8</div></div>
+        <div class="card-title-wrap"><div class="card-title-de">Sichtprüfung</div><div class="card-title-en">Visual Test — Page 3 of 7</div></div>
         <div class="card-status pend" id="stat-s1">—</div>
         <div class="card-chevron open">▼</div>
       </div>
@@ -1102,7 +971,7 @@
     <div class="card" id="s2">
       <div class="card-header open" onclick="toggle(this)">
         <div class="section-num">2</div>
-        <div class="card-title-wrap"><div class="card-title-de">Funktionsprüfung</div><div class="card-title-en">Functional Test — Page 3 of 8</div></div>
+        <div class="card-title-wrap"><div class="card-title-de">Funktionsprüfung</div><div class="card-title-en">Functional Test — Page 3 of 7</div></div>
         <div class="card-status pend" id="stat-s2">—</div>
         <div class="card-chevron open">▼</div>
       </div>
@@ -1126,7 +995,7 @@
     <div class="card" id="s3">
       <div class="card-header open" onclick="toggle(this)">
         <div class="section-num">3</div>
-        <div class="card-title-wrap"><div class="card-title-de">Prüfung der Senderfrequenz</div><div class="card-title-en">Test of Sending Frequency — Page 4 of 8</div></div>
+        <div class="card-title-wrap"><div class="card-title-de">Prüfung der Senderfrequenz</div><div class="card-title-en">Test of Sending Frequency — Page 4 of 7</div></div>
         <div class="tolerance-tag">Tol: ≤ 1%</div>
         <div class="card-status pend" id="stat-s3">—</div>
         <div class="card-chevron open">▼</div>
@@ -1145,7 +1014,7 @@
     <div class="card" id="s4">
       <div class="card-header open" onclick="toggle(this)">
         <div class="section-num">4</div>
-        <div class="card-title-wrap"><div class="card-title-de">Genauigkeit der Verstärkerstufen</div><div class="card-title-en">Accuracy of Amplification Steps — Page 5 of 8</div></div>
+        <div class="card-title-wrap"><div class="card-title-de">Genauigkeit der Verstärkerstufen</div><div class="card-title-en">Accuracy of Amplification Steps — Page 5 of 7</div></div>
         <div class="tolerance-tag">Tol: ≤ 2 dB</div>
         <div class="card-status pend" id="stat-s4">—</div>
         <div class="card-chevron open">▼</div>
@@ -1164,27 +1033,9 @@
           <div class="field"><label class="field-label">Initialwert Kanal 2 / Initial CH2</label><input type="number" id="s4-init2" placeholder="dB" oninput="recalcAmp()"> <small style="color:var(--gray-40)">dB</small></div>
         </div>
         <div class="divider"><span>Kanal 1 / Channel 1</span></div>
-        <div class="tbl-wrap"><table class="ptbl"><thead>
-          <tr>
-            <th class="green-h" rowspan="2">Stufe D<br><small style="font-weight:400">[dB]</small></th>
-            <th colspan="2" class="green-h">Nach Abschwächung (H)<br><small style="font-weight:400">after attenuation — ET-Gerät Anzeige</small></th>
-            <th colspan="2" class="green-h">Vor Abschwächung (J)<br><small style="font-weight:400">before attenuation — ET-Gerät Anzeige</small></th>
-            <th colspan="2" class="green-h">Abweichung * = |J+D−H|<br><small style="font-weight:400">Toleranz ≤ 2 dB</small></th>
-            <th colspan="2" class="green-h">Einstellung Abschwächer *<br><small style="font-weight:400">= Init + D</small></th>
-          </tr>
-          <tr><th>X [dB]</th><th>Y [dB]</th><th>X [dB]</th><th>Y [dB]</th><th>X</th><th>Y</th><th>X</th><th>Y</th></tr>
-        </thead><tbody id="amp-c1"></tbody></table></div>
+        <div class="tbl-wrap"><table class="ptbl"><thead><tr><th class="green-h" rowspan="2">Stufe (dB)</th><th colspan="2" class="green-h">Nach Abschwächung</th><th colspan="2" class="green-h">Vor Abschwächung</th><th colspan="2" class="green-h">Abweichung *</th><th colspan="2" class="green-h">Einstellung *</th></tr><tr><th>X</th><th>Y</th><th>X</th><th>Y</th><th>X</th><th>Y</th><th>X</th><th>Y</th></tr></thead><tbody id="amp-c1"></tbody></table></div>
         <div class="divider" style="margin-top:20px"><span>Kanal 2 / Channel 2</span></div>
-        <div class="tbl-wrap"><table class="ptbl"><thead>
-          <tr>
-            <th class="green-h" rowspan="2">Stufe D<br><small style="font-weight:400">[dB]</small></th>
-            <th colspan="2" class="green-h">Nach Abschwächung (H)<br><small style="font-weight:400">after attenuation — ET-Gerät Anzeige</small></th>
-            <th colspan="2" class="green-h">Vor Abschwächung (J)<br><small style="font-weight:400">before attenuation — ET-Gerät Anzeige</small></th>
-            <th colspan="2" class="green-h">Abweichung * = |J+D−H|<br><small style="font-weight:400">Toleranz ≤ 2 dB</small></th>
-            <th colspan="2" class="green-h">Einstellung Abschwächer *<br><small style="font-weight:400">= Init + D</small></th>
-          </tr>
-          <tr><th>X [dB]</th><th>Y [dB]</th><th>X [dB]</th><th>Y [dB]</th><th>X</th><th>Y</th><th>X</th><th>Y</th></tr>
-        </thead><tbody id="amp-c2"></tbody></table></div>
+        <div class="tbl-wrap"><table class="ptbl"><thead><tr><th class="green-h" rowspan="2">Stufe (dB)</th><th colspan="2" class="green-h">Nach Abschwächung</th><th colspan="2" class="green-h">Vor Abschwächung</th><th colspan="2" class="green-h">Abweichung *</th><th colspan="2" class="green-h">Einstellung *</th></tr><tr><th>X</th><th>Y</th><th>X</th><th>Y</th><th>X</th><th>Y</th><th>X</th><th>Y</th></tr></thead><tbody id="amp-c2"></tbody></table></div>
         <p style="font-size:11px;color:var(--gray-40);margin-top:8px">* Automatisch gerechnet / Automatically calculated</p>
       </div>
     </div>
@@ -1193,7 +1044,7 @@
     <div class="card" id="s5">
       <div class="card-header open" onclick="toggle(this)">
         <div class="section-num">5</div>
-        <div class="card-title-wrap"><div class="card-title-de">Funktion der Frequenzfilter</div><div class="card-title-en">Function of Frequency Filters — Page 6 of 8</div></div>
+        <div class="card-title-wrap"><div class="card-title-de">Funktion der Frequenzfilter</div><div class="card-title-en">Function of Frequency Filters — Page 6 of 7</div></div>
         <div class="tolerance-tag">Tol: ±0,2 Skt</div>
         <div class="card-status pend" id="stat-s5">—</div>
         <div class="card-chevron open">▼</div>
@@ -1223,42 +1074,35 @@
     <div class="card" id="s6">
       <div class="card-header open" onclick="toggle(this)">
         <div class="section-num">6</div>
-        <div class="card-title-wrap"><div class="card-title-de">Plausitest</div><div class="card-title-en">Plausibility Test — Page 7–8 of 8</div></div>
+        <div class="card-title-wrap"><div class="card-title-de">Plausitest</div><div class="card-title-en">Plausibility Test — Page 7 of 7</div></div>
         <div class="card-status pend" id="stat-s6">—</div>
         <div class="card-chevron open">▼</div>
       </div>
       <div class="card-body">
-        <div class="infobox">** Nur anwendbar für automatisierte Prüfanlagen – für Handgeräte Punkt 5 anwenden.<br><em>** Only applicable for automated test systems – for handset use point 5.</em></div>
-        <div style="display:flex;gap:32px;align-items:center;margin-bottom:16px;flex-wrap:wrap">
-          <div style="display:flex;gap:14px;align-items:center;background:var(--gray-05);border:1px solid var(--gray-10);border-radius:4px;padding:10px 16px">
-            <span style="font-size:18px;font-weight:700;font-family:'Source Code Pro',monospace;color:var(--schaeffler-green)">X</span><span style="font-size:12px;color:var(--gray-60)">=&nbsp;i.O / ok</span>
-            <span style="margin:0 8px;color:var(--gray-20)">|</span>
-            <span style="font-size:18px;font-weight:700;font-family:'Source Code Pro',monospace;color:var(--red)">O</span><span style="font-size:12px;color:var(--gray-60)">=&nbsp;n.i.O / not ok</span>
-          </div>
-          <div style="display:flex;gap:16px;align-items:flex-end">
+        <div class="infobox">** Nur anwendbar für automatisierte Prüfanlagen – für Handgeräte Punkt 5 anwenden.<br><em>** Only applicable for automated test systems – for handset use point 5.</em><br>i.O (ok): <strong>X</strong> &nbsp;·&nbsp; n.i.O (not ok): <strong>O</strong></div>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;margin-bottom:16px">
+          <div class="field" style="flex:1;min-width:180px"><label class="field-label">Startreihenfolge / Starting order</label><input type="text" id="s6-order" placeholder="z.B. ABCABC..."></div>
+          <div style="display:flex;gap:20px;align-items:flex-end">
             <div class="field">
-              <label class="field-label">Anzahl i.O * <span>Count ok — Prüfergebnis</span></label>
+              <label class="field-label">Anzahl i.O * / Count OK</label>
               <input type="text" id="s6-ok" readonly style="color:var(--schaeffler-green);font-family:'Source Code Pro',monospace;font-size:22px;font-weight:700;width:72px;text-align:center;background:var(--ok-l);border-color:rgba(0,137,61,0.3)">
             </div>
             <div class="field">
-              <label class="field-label">Anzahl n.i.O * <span>Count not-ok — Prüfergebnis</span></label>
+              <label class="field-label">Anzahl n.i.O * / Count NOK</label>
               <input type="text" id="s6-nok" readonly style="color:var(--red);font-family:'Source Code Pro',monospace;font-size:22px;font-weight:700;width:72px;text-align:center;background:var(--red-l);border-color:rgba(212,43,43,0.3)">
             </div>
-            <div style="padding-bottom:6px;font-size:13px;font-weight:600" id="s6-hint" style="color:var(--gray-40)">—</div>
           </div>
-          <p style="font-size:11px;color:var(--gray-40);align-self:flex-end;padding-bottom:6px">* Automatisch gerechnet aus Spalte „Prüfergebnis" · Bestehen: alle 30 ausgefüllt, genau 20× i.O. (X) + 10× n.i.O. (O)</p>
         </div>
-        <div class="tbl-wrap">
-          <table class="ptbl" id="plaus-table">
-            <thead>
-              <tr>
-                <th class="green-h" style="width:52px;text-align:center">Teil-Nr.<br><small style="font-weight:400">Part-Nr.</small></th>
-                <th class="green-h" style="width:50%">Startreihenfolge<br><small style="font-weight:400">Starting order &nbsp;(X = i.O &nbsp;·&nbsp; O = n.i.O)</small></th>
-                <th class="green-h" style="width:50%">Prüfergebnis<br><small style="font-weight:400">Test result &nbsp;(X = i.O &nbsp;·&nbsp; O = n.i.O)</small></th>
-              </tr>
-            </thead>
-            <tbody id="plaus-body"></tbody>
-          </table>
+        <p style="font-size:11px;color:var(--gray-40);margin-bottom:12px">* Automatisch gerechnet / Automatically calculated</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-60);margin-bottom:8px;border-bottom:2px solid var(--schaeffler-green);padding-bottom:4px">Startreihenfolge / Starting order</div>
+            <div class="plaus-grid" id="plaus-start"></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-60);margin-bottom:8px;border-bottom:2px solid var(--schaeffler-green);padding-bottom:4px">Prüfergebnisse / Test results</div>
+            <div class="plaus-grid" id="plaus-res"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1338,22 +1182,16 @@ function calcFreq(ch,i,ref) {
 }
 
 // ── AMP TABLES ────────────────────────────────────
-// Excel-Spaltenreihenfolge: D(Stufe fest) | H(Nach,X) | I(Nach,Y) | J(Vor,X) | K(Vor,Y) | L(Abw.X) | M(Abw.Y) | N(Einst.X) | O(Einst.Y)
-// Formeln:
-//   Abweichung X = ABS(J + D - H)   → |Vor_X + Stufe - Nach_X|
-//   Abweichung Y = ABS(K + D - I)   → |Vor_Y + Stufe - Nach_Y|
-//   Einstellung  = Initialwert + D  → Sollwert am Stufenabschwächer
-// Physik: Nach = Vor + D (ideal) → Abweichung = 0 → Toleranz ≤ 2 dB
 function buildAmp(id, ch) {
   const tb = document.getElementById(id);
   ampStages.forEach((st,i) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="mono" style="font-weight:700;width:60px;text-align:center">${st} dB</td>
-      <td><input type="number" step="any" id="amp-${ch}-hx-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
-      <td><input type="number" step="any" id="amp-${ch}-hy-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
-      <td><input type="number" step="any" id="amp-${ch}-jx-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
-      <td><input type="number" step="any" id="amp-${ch}-jy-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
+      <td class="mono" style="font-weight:700;width:70px">${st} dB</td>
+      <td><input type="number" step="any" id="amp-${ch}-ax-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
+      <td><input type="number" step="any" id="amp-${ch}-ay-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
+      <td><input type="number" step="any" id="amp-${ch}-bx-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
+      <td><input type="number" step="any" id="amp-${ch}-by-${i}" placeholder="—" oninput="calcAmpRow('${ch}',${i},${st})"></td>
       <td class="mono" id="amp-${ch}-devx-${i}">—</td>
       <td class="mono" id="amp-${ch}-devy-${i}">—</td>
       <td class="mono" id="amp-${ch}-setx-${i}">—</td>
@@ -1361,35 +1199,22 @@ function buildAmp(id, ch) {
     tb.appendChild(tr);
   });
 }
-function calcAmpRow(ch, i, stage) {
-  const H_x = parseFloat(document.getElementById(`amp-${ch}-hx-${i}`).value); // Nach Abschwächung X
-  const H_y = parseFloat(document.getElementById(`amp-${ch}-hy-${i}`).value); // Nach Abschwächung Y
-  const J_x = parseFloat(document.getElementById(`amp-${ch}-jx-${i}`).value); // Vor Abschwächung X
-  const J_y = parseFloat(document.getElementById(`amp-${ch}-jy-${i}`).value); // Vor Abschwächung Y
-  const init = parseFloat(document.getElementById(ch==='1' ? 's4-init1' : 's4-init2').value);
-  const devX = document.getElementById(`amp-${ch}-devx-${i}`);
-  const devY = document.getElementById(`amp-${ch}-devy-${i}`);
-  const setX = document.getElementById(`amp-${ch}-setx-${i}`);
-  const setY = document.getElementById(`amp-${ch}-sety-${i}`);
-  // Abweichung = |J + D - H| (Excel: ABS(J241+D241-H241))
-  if (!isNaN(H_x) && !isNaN(J_x)) {
-    const v = Math.abs(J_x + stage - H_x);
-    devX.textContent = v.toFixed(2);
-    devX.className = 'mono ' + (v <= 2 ? 'ok' : 'nok');
-  } else { devX.textContent = '—'; devX.className = 'mono'; }
-  if (!isNaN(H_y) && !isNaN(J_y)) {
-    const v = Math.abs(J_y + stage - H_y);
-    devY.textContent = v.toFixed(2);
-    devY.className = 'mono ' + (v <= 2 ? 'ok' : 'nok');
-  } else { devY.textContent = '—'; devY.className = 'mono'; }
-  // Einstellung = Initialwert + Stufe (Excel: $I$232 + D)
-  if (!isNaN(init)) {
-    setX.textContent = (init + stage).toFixed(1);
-    setY.textContent = (init + stage).toFixed(1);
-  } else { setX.textContent = '—'; setY.textContent = '—'; }
+function calcAmpRow(ch,i,stage) {
+  const ax=parseFloat(document.getElementById(`amp-${ch}-ax-${i}`).value);
+  const ay=parseFloat(document.getElementById(`amp-${ch}-ay-${i}`).value);
+  const bx=parseFloat(document.getElementById(`amp-${ch}-bx-${i}`).value);
+  const by=parseFloat(document.getElementById(`amp-${ch}-by-${i}`).value);
+  const init=parseFloat(document.getElementById(ch==='1'?'s4-init1':'s4-init2').value);
+  const dx=document.getElementById(`amp-${ch}-devx-${i}`);
+  const dy=document.getElementById(`amp-${ch}-devy-${i}`);
+  const sx=document.getElementById(`amp-${ch}-setx-${i}`);
+  const sy=document.getElementById(`amp-${ch}-sety-${i}`);
+  if(!isNaN(ax)&&!isNaN(bx)){const v=Math.abs(bx+stage-ax);dx.textContent=v.toFixed(2);dx.className='mono '+(v<=2?'ok':'nok');}else{dx.textContent='—';dx.className='mono';}
+  if(!isNaN(ay)&&!isNaN(by)){const v=Math.abs(by+stage-ay);dy.textContent=v.toFixed(2);dy.className='mono '+(v<=2?'ok':'nok');}else{dy.textContent='—';dy.className='mono';}
+  if(!isNaN(init)){sx.textContent=(init+stage).toFixed(1);sy.textContent=(init+stage).toFixed(1);}
   updateStat('s4');
 }
-function recalcAmp() { ampStages.forEach((st,i) => { calcAmpRow('1',i,st); calcAmpRow('2',i,st); }); }
+function recalcAmp(){ampStages.forEach((st,i)=>{calcAmpRow('1',i,st);calcAmpRow('2',i,st);});}
 
 // ── FILTER TABLES ─────────────────────────────────
 function buildFlt(id, ch) {
@@ -1425,78 +1250,28 @@ function calcFlt2(ch,g,i){
 }
 
 // ── PLAUSIBILITY ──────────────────────────────────
-// Excel-Struktur: Spalte D = Startreihenfolge (X/O), Spalte G = Prüfergebnis (X/O)
-// Zählung läuft nur über Prüfergebnis — 20× i.O. (X) + 10× n.i.O. (O) wie Original
-// Verteilung: Teile 1–10 = abwechselnd X/O (Startreihenfolge gemischt),
-//             Prüfergebnis: 1–20=X, 21–30=O
-const SEL_STYLE = `width:100%;border:none;outline:none;font-family:'Source Code Pro',monospace;font-size:14px;font-weight:700;cursor:pointer;background:transparent;padding:2px 4px`;
-// Felder starten LEER — Prüfer trägt ein
-// Bestehens-Bedingung: alle 30 ausgefüllt, genau 20× X (i.O.) + genau 10× O (n.i.O.)
-const START_PRESET  = () => '';
-const RESULT_PRESET = () => '';
 function buildPlaus() {
-  const tbody = document.getElementById('plaus-body');
+  const sg = document.getElementById('plaus-start');
+  const rg = document.getElementById('plaus-res');
   for(let n=1;n<=30;n++){
-    const sv=START_PRESET(n), rv=RESULT_PRESET(n);
-    const tr=document.createElement('tr');
-    tr.id=`pr-row-${n}`;
-    tr.innerHTML=`
-      <td style="font-family:'Source Code Pro',monospace;font-weight:700;text-align:center;width:52px;color:var(--gray-60)">${n}</td>
-      <td id="ps-c-${n}" style="padding:3px 6px">
-        <select id="ps-${n}" onchange="styleCell('ps-c-${n}','ps-${n}')" style="${SEL_STYLE}">
-          <option value="">—</option>
-          <option value="X"${sv==='X'?' selected':''}>X &nbsp; i.O</option>
-          <option value="O"${sv==='O'?' selected':''}>O &nbsp; n.i.O</option>
-        </select>
-      </td>
-      <td id="pr-c-${n}" style="padding:3px 6px">
-        <select id="pr-${n}" onchange="styleCell('pr-c-${n}','pr-${n}');calcPlaus()" style="${SEL_STYLE}">
-          <option value="">—</option>
-          <option value="X"${rv==='X'?' selected':''}>X &nbsp; i.O</option>
-          <option value="O"${rv==='O'?' selected':''}>O &nbsp; n.i.O</option>
-        </select>
-      </td>`;
-    tbody.appendChild(tr);
-    // Apply colors immediately
-    styleCell(`ps-c-${n}`,`ps-${n}`);
-    styleCell(`pr-c-${n}`,`pr-${n}`);
+    const sc=document.createElement('div'); sc.className='plaus-cell';
+    sc.innerHTML=`<div class="pnum">${n}</div><input class="pinput" type="text" id="ps-${n}" placeholder="—">`;
+    sg.appendChild(sc);
+    const rc=document.createElement('div'); rc.className='plaus-cell'; rc.id=`pr-c-${n}`;
+    rc.innerHTML=`<div class="pnum">${n}</div><select id="pr-${n}" onchange="calcPlaus()"><option value="">—</option><option value="X">X</option><option value="O">O</option></select>`;
+    rg.appendChild(rc);
   }
-  calcPlaus();
-}
-function styleCell(tdId, selId){
-  const v=document.getElementById(selId).value;
-  const td=document.getElementById(tdId);
-  const sel=document.getElementById(selId);
-  if(v==='X'){td.style.background='var(--ok-l)';sel.style.color='var(--schaeffler-green)';}
-  else if(v==='O'){td.style.background='var(--red-l)';sel.style.color='var(--red)';}
-  else{td.style.background='';sel.style.color='';}
 }
 function calcPlaus(){
-  // COUNTIF über Prüfergebnis-Spalte (Spalte G im Excel)
-  // Bestehen: alle 30 ausgefüllt, genau 20× X (i.O.) + genau 10× O (n.i.O.)
-  let ok=0, nok=0, empty=0;
+  let ok=0,nok=0;
   for(let n=1;n<=30;n++){
     const v=document.getElementById(`pr-${n}`).value;
-    if(v==='X') ok++;
-    else if(v==='O') nok++;
-    else empty++;
+    const c=document.getElementById(`pr-c-${n}`);
+    c.className='plaus-cell'+(v==='X'?' iO':v==='O'?' niO':'');
+    if(v==='X')ok++; else if(v==='O')nok++;
   }
-  document.getElementById('s6-ok').value  = ok  || '';
-  document.getElementById('s6-nok').value = nok || '';
-  // Hinweis-Text: zeigt was noch fehlt
-  const hint = document.getElementById('s6-hint');
-  if(hint){
-    if(empty > 0){
-      hint.textContent = `${empty} Feld${empty>1?'er':''} noch offen`;
-      hint.style.color = 'var(--amber)';
-    } else if(ok === 20 && nok === 10){
-      hint.textContent = '✓ Vorgabe erfüllt: 20× i.O. + 10× n.i.O.';
-      hint.style.color = 'var(--schaeffler-green)';
-    } else {
-      hint.textContent = `Vorgabe: 20× i.O. (aktuell ${ok}) + 10× n.i.O. (aktuell ${nok})`;
-      hint.style.color = 'var(--red)';
-    }
-  }
+  document.getElementById('s6-ok').value=ok||'';
+  document.getElementById('s6-nok').value=nok||'';
   updateStat('s6');
 }
 
@@ -1509,15 +1284,7 @@ function updateStat(sid){
   else if(sid==='s3'){const cells=document.querySelectorAll('[id^="frq-"][id*="-d-"]');const nok=Array.from(cells).some(c=>c.classList.contains('nok'));const ok=Array.from(cells).some(c=>c.classList.contains('ok'));st=nok?'nok':ok?'ok':'pend';}
   else if(sid==='s4'){const cells=document.querySelectorAll('[id^="amp-"][id*="-dev"]');const nok=Array.from(cells).some(c=>c.classList.contains('nok'));const ok=Array.from(cells).some(c=>c.classList.contains('ok'));st=nok?'nok':ok?'ok':'pend';}
   else if(sid==='s5'){const cells=document.querySelectorAll('[id^="flt-"][id*="-d-"],[id^="flt-"][id*="-dh-"]');const nok=Array.from(cells).some(c=>c.classList.contains('nok'));const ok=Array.from(cells).some(c=>c.classList.contains('ok'));st=nok?'nok':ok?'ok':'pend';}
-  else if(sid==='s6'){
-    const ok=parseInt(document.getElementById('s6-ok').value)||0;
-    const nok=parseInt(document.getElementById('s6-nok').value)||0;
-    const total=ok+nok;
-    // Bestehen: alle 30 eingetragen, genau 20× i.O. + genau 10× n.i.O.
-    if(total===0) st='pend';
-    else if(total===30 && ok===20 && nok===10) st='ok';
-    else st='nok';
-  }
+  else if(sid==='s6'){const ok=parseInt(document.getElementById('s6-ok').value)||0;const nok=parseInt(document.getElementById('s6-nok').value)||0;st=(ok+nok>0)?(nok>0?'nok':'ok'):'pend';}
 
   const el=document.getElementById(`stat-${sid}`);
   const su=document.getElementById(`sum-${sid}`);
@@ -1541,29 +1308,7 @@ function updateSummary(){document.getElementById('sum-nr').textContent=document.
 
 // ── TOGGLE ────────────────────────────────────────
 function toggle(h){const b=h.nextElementSibling,c=h.querySelector('.card-chevron');b.classList.toggle('hidden');c.classList.toggle('open');h.classList.toggle('open');}
-function toggleSidebar(){
-  const nav=document.querySelector('nav.sidebar');
-  const btn=document.getElementById('mob-menu-btn');
-  const ov=document.getElementById('mob-overlay');
-  nav.classList.toggle('open');
-  btn.classList.toggle('open');
-  ov.classList.toggle('show');
-}
-function closeSidebar(){
-  document.querySelector('nav.sidebar').classList.remove('open');
-  document.getElementById('mob-menu-btn').classList.remove('open');
-  document.getElementById('mob-overlay').classList.remove('show');
-}
-function navTo(id){
-  const el=document.getElementById(id);
-  if(!el)return;
-  closeSidebar();
-  const headerH=document.querySelector('header')?.offsetHeight||68;
-  const top=el.getBoundingClientRect().top+window.scrollY-headerH-12;
-  window.scrollTo({top,behavior:'smooth'});
-  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-}
+function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));event.currentTarget.classList.add('active');}
 function selEnv(c){document.querySelectorAll('.env-card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');c.querySelector('input').checked=true;}
 
 // ── PHOTO ─────────────────────────────────────────
@@ -1571,9 +1316,11 @@ function loadPhoto(e){const f=e.target.files[0];if(!f)return;const r=new FileRea
 function dropPhoto(e){e.preventDefault();loadPhoto({target:{files:e.dataTransfer.files}});}
 function clearPhoto(){document.getElementById('photo-prev').style.display='none';document.getElementById('photo-ph').style.display='block';document.getElementById('photo-zone').classList.remove('filled');}
 
-// ── RESET / EXPORT ───────────────────────────────
+// ── SAVE / LOAD / RESET / EXPORT ─────────────────
 function collect(){const d={};document.querySelectorAll('input:not([type=radio]):not([type=file]),textarea,select').forEach(e=>{if(e.id)d[e.id]=e.value;});document.querySelectorAll('input[type=radio]:checked').forEach(e=>{d['r_'+e.name]=e.value;});return d;}
-function resetForm(){if(!confirm('Alle Eingaben zurücksetzen?'))return;document.querySelectorAll('input:not([type=radio]):not([type=file]),textarea').forEach(e=>{if(!e.readOnly)e.value='';});document.querySelectorAll('input[type=radio]').forEach(e=>e.checked=false);document.querySelectorAll('select').forEach(e=>e.selectedIndex=0);document.querySelectorAll('.mono').forEach(c=>{c.textContent='—';c.className='mono';});clearPhoto();for(let n=1;n<=30;n++){styleCell(`ps-c-${n}`,`ps-${n}`);styleCell(`pr-c-${n}`,`pr-${n}`);}['s1','s2','s3','s4','s5','s6'].forEach(s=>updateStat(s));updateSummary();toast('Formular zurückgesetzt');}
+function saveForm(){localStorage.setItem('sch_pl600',JSON.stringify(collect()));toast('✓ Protokoll gespeichert');}
+function loadForm(){const raw=localStorage.getItem('sch_pl600');if(!raw)return;const d=JSON.parse(raw);Object.entries(d).forEach(([k,v])=>{if(k.startsWith('r_')){const r=document.querySelector(`input[name="${k.slice(2)}}"][value="${v}"]`);if(r){r.checked=true;r.dispatchEvent(new Event('change'));}}else{const e=document.getElementById(k);if(e&&!e.readOnly)e.value=v;}});updateSummary();calcPlaus();}
+function resetForm(){if(!confirm('Alle Eingaben zurücksetzen?'))return;localStorage.removeItem('sch_pl600');document.querySelectorAll('input:not([type=radio]):not([type=file]),textarea').forEach(e=>{if(!e.readOnly)e.value='';});document.querySelectorAll('input[type=radio]').forEach(e=>e.checked=false);document.querySelectorAll('select').forEach(e=>e.selectedIndex=0);document.querySelectorAll('.mono').forEach(c=>{c.textContent='—';c.className='mono';});clearPhoto();['s1','s2','s3','s4','s5','s6'].forEach(s=>updateStat(s));updateSummary();toast('Formular zurückgesetzt');}
 function exportJSON(){const blob=new Blob([JSON.stringify(collect(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`Schaeffler_PL600_Pruefprotokoll_${new Date().toISOString().slice(0,10)}.json`;a.click();}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2400);}
 
@@ -1596,6 +1343,7 @@ const today = new Date().toISOString().split('T')[0];
 document.getElementById('f-date').value=today;
 document.getElementById('f-issue').value=today;
 document.getElementById('f-sign-date').value=today;
+loadForm();
 </script>
 </body>
 </html>
