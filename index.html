@@ -1207,31 +1207,13 @@
         </div>
         <div class="divider"><span>Kanal 1 / Channel 1 — Toleranz: ±0,2 Skt</span></div>
         <div class="tbl-wrap"><table class="ptbl"><thead>
-          <tr>
-            <th class="green-h" rowspan="2">HP (Hz)</th>
-            <th colspan="3" class="green-h">n = 200 min⁻¹</th>
-            <th colspan="3" class="green-h" style="background:#006B30">n = 1000 min⁻¹</th>
-            <th colspan="3" class="green-h" style="background:#004D22">n = 2000 min⁻¹</th>
-          </tr>
-          <tr>
-            <th>EA (Skt)</th><th>T (Skt)</th><th>Δ*</th>
-            <th>EA (Skt)</th><th>T (Skt)</th><th>Δ*</th>
-            <th>EA (Skt)</th><th>T (Skt)</th><th>Δ*</th>
-          </tr>
+          <tr><th class="green-h" rowspan="2">HP (Hz)</th><th colspan="3" class="green-h">n = 200 min⁻¹</th><th colspan="3" class="green-h">n = 200 min⁻¹</th><th colspan="3" class="green-h" style="background:#006B30">n = 1000 min⁻¹</th><th colspan="3" class="green-h" style="background:#006B30">n = 1000 min⁻¹</th><th colspan="3" class="green-h" style="background:#004D22">n = 2000 min⁻¹</th><th colspan="3" class="green-h" style="background:#004D22">n = 2000 min⁻¹</th></tr>
+          <tr><th>EA (dB)</th><th>T (dB)</th><th>Δ*</th><th>EA</th><th>T</th><th>Δ*</th><th>EA (dB)</th><th>T (dB)</th><th>Δ*</th><th>EA</th><th>T</th><th>Δ*</th><th>EA (dB)</th><th>T (dB)</th><th>Δ*</th><th>EA</th><th>T</th><th>Δ*</th></tr>
         </thead><tbody id="flt-c1"></tbody></table></div>
         <div class="divider" style="margin-top:20px"><span>Kanal 2 / Channel 2 — Toleranz: ±0,2 Skt</span></div>
         <div class="tbl-wrap"><table class="ptbl"><thead>
-          <tr>
-            <th class="green-h" rowspan="2">HP (Hz)</th>
-            <th colspan="3" class="green-h">n = 200 min⁻¹</th>
-            <th colspan="3" class="green-h" style="background:#006B30">n = 1000 min⁻¹</th>
-            <th colspan="3" class="green-h" style="background:#004D22">n = 2000 min⁻¹</th>
-          </tr>
-          <tr>
-            <th>EA (Skt)</th><th>T (Skt)</th><th>Δ*</th>
-            <th>EA (Skt)</th><th>T (Skt)</th><th>Δ*</th>
-            <th>EA (Skt)</th><th>T (Skt)</th><th>Δ*</th>
-          </tr>
+          <tr><th class="green-h" rowspan="2">HP (Hz)</th><th colspan="3" class="green-h">n = 200 min⁻¹</th><th colspan="3" class="green-h">n = 200 min⁻¹</th><th colspan="3" class="green-h" style="background:#006B30">n = 1000 min⁻¹</th><th colspan="3" class="green-h" style="background:#006B30">n = 1000 min⁻¹</th><th colspan="3" class="green-h" style="background:#004D22">n = 2000 min⁻¹</th><th colspan="3" class="green-h" style="background:#004D22">n = 2000 min⁻¹</th></tr>
+          <tr><th>EA (dB)</th><th>T (dB)</th><th>Δ*</th><th>EA</th><th>T</th><th>Δ*</th><th>EA (dB)</th><th>T (dB)</th><th>Δ*</th><th>EA</th><th>T</th><th>Δ*</th><th>EA (dB)</th><th>T (dB)</th><th>Δ*</th><th>EA</th><th>T</th><th>Δ*</th></tr>
         </thead><tbody id="flt-c2"></tbody></table></div>
         <p style="font-size:11px;color:var(--gray-40);margin-top:8px">* Automatisch gerechnet / Automatically calculated</p>
       </div>
@@ -1410,29 +1392,35 @@ function calcAmpRow(ch, i, stage) {
 function recalcAmp() { ampStages.forEach((st,i) => { calcAmpRow('1',i,st); calcAmpRow('2',i,st); }); }
 
 // ── FILTER TABLES ─────────────────────────────────
-// Excel: 3 Drehzahlgruppen (n=200, n=1000, n=2000), je HP-Frequenz: EA + T + Δ (=EA−T)
-// 6 HP-Frequenzen: 1.8, 3.5, 5, 32, 50, 300 Hz → pro Kanal 18 Eingabefelder
 function buildFlt(id, ch) {
   const tb = document.getElementById(id);
   hpFreqs.forEach((hp,i) => {
     const tr = document.createElement('tr');
     let cells = `<td class="mono" style="font-weight:700">${hp}</td>`;
     for(let g=0;g<3;g++){
-      cells+=`<td><input type="number" step="any" id="flt-${ch}-${g}-ea-${i}" placeholder="—" style="width:60px" oninput="calcFlt('${ch}',${g},${i})"></td>`;
-      cells+=`<td><input type="number" step="any" id="flt-${ch}-${g}-t-${i}"  placeholder="—" style="width:60px" oninput="calcFlt('${ch}',${g},${i})"></td>`;
+      cells+=`<td><input type="number" step="any" id="flt-${ch}-${g}-ea-${i}" placeholder="—" style="width:54px" oninput="calcFlt('${ch}',${g},${i})"></td>`;
+      cells+=`<td><input type="number" step="any" id="flt-${ch}-${g}-t-${i}" placeholder="—" style="width:54px" oninput="calcFlt('${ch}',${g},${i})"></td>`;
       cells+=`<td class="mono" id="flt-${ch}-${g}-d-${i}">—</td>`;
+      cells+=`<td><input type="number" step="any" id="flt-${ch}-${g}-eah-${i}" placeholder="—" style="width:48px"></td>`;
+      cells+=`<td><input type="number" step="any" id="flt-${ch}-${g}-th-${i}" placeholder="—" style="width:48px" oninput="calcFlt2('${ch}',${g},${i})"></td>`;
+      cells+=`<td class="mono" id="flt-${ch}-${g}-dh-${i}">—</td>`;
     }
     tr.innerHTML=cells;
     tb.appendChild(tr);
   });
 }
 function calcFlt(ch,g,i){
-  // Excel: Δ = EA − T, Toleranz ±0,2 Skt
-  const ea=parseFloat(document.getElementById(`flt-${ch}-${g}-ea-${i}`)?.value);
-  const t =parseFloat(document.getElementById(`flt-${ch}-${g}-t-${i}`)?.value);
-  const d =document.getElementById(`flt-${ch}-${g}-d-${i}`);
-  if(!isNaN(ea)&&!isNaN(t)){const v=ea-t;d.textContent=v.toFixed(2);d.className='mono '+(Math.abs(v)<=0.2?'ok':'nok');}
-  else{d.textContent='—';d.className='mono';}
+  const ea=parseFloat(document.getElementById(`flt-${ch}-${g}-ea-${i}`).value);
+  const t=parseFloat(document.getElementById(`flt-${ch}-${g}-t-${i}`).value);
+  const d=document.getElementById(`flt-${ch}-${g}-d-${i}`);
+  if(!isNaN(ea)&&!isNaN(t)){const v=ea-t;d.textContent=v.toFixed(2);d.className='mono '+(Math.abs(v)<=0.2?'ok':'nok');}else{d.textContent='—';d.className='mono';}
+  updateStat('s5');
+}
+function calcFlt2(ch,g,i){
+  const ea=parseFloat(document.getElementById(`flt-${ch}-${g}-eah-${i}`)?.value);
+  const t=parseFloat(document.getElementById(`flt-${ch}-${g}-th-${i}`)?.value);
+  const d=document.getElementById(`flt-${ch}-${g}-dh-${i}`);
+  if(d&&!isNaN(ea)&&!isNaN(t)){const v=ea-t;d.textContent=v.toFixed(2);d.className='mono '+(Math.abs(v)<=0.2?'ok':'nok');}
   updateStat('s5');
 }
 
